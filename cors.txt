@@ -1,0 +1,25 @@
+
+Exactly, that's correct. CORS (Cross-Origin Resource Sharing) is a security feature implemented by web browsers, and it involves the backend server sending specific HTTP headers in its responses to grant or deny permission for web pages from different origins to access its resources.
+
+Here's a breakdown of how it works:
+
+Client-Side (Web Page):
+
+When a web page (from one origin) wants to make a cross-origin request to a server (another origin), the browser includes an "Origin" header in the request. This header indicates the origin of the requesting page.
+Server-Side (Backend):
+
+The backend server receives the incoming request and determines whether it is willing to accept requests from the given origin.
+If the server allows the origin, it includes specific CORS headers in its response to inform the browser that the request is permitted. These headers include:
+Access-Control-Allow-Origin: Specifies which origins are allowed. It can be a specific origin, a list of origins, or a wildcard (*) to allow any origin.
+Access-Control-Allow-Methods: Specifies which HTTP methods (GET, POST, PUT, DELETE, etc.) are allowed.
+Access-Control-Allow-Headers: Specifies which headers are allowed in the actual request.
+Access-Control-Expose-Headers: Specifies which headers can be exposed to the browser.
+Access-Control-Allow-Credentials: Indicates whether the browser should include credentials (e.g., cookies) in the request.
+Access-Control-Max-Age: Specifies how long the results of a preflight request (OPTIONS) can be cached.
+Browser Handling:
+
+The browser checks the CORS headers in the response.
+If the headers indicate that the request is allowed, the browser allows the response to be accessed by the web page. Otherwise, it blocks access.
+This mechanism helps to prevent malicious websites from making unauthorized requests on behalf of users. It allows servers to specify which origins are permitted to access their resources and what types of requests are allowed.
+
+In your Golang code example, the use of the cors middleware is configuring the server to include the necessary CORS headers in its responses, allowing the specified origins and methods to access the resources.
